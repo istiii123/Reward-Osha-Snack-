@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Reward Koin</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f7ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: purple;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .profile-box {
+      background: white;
+      border-radius: 10px;
+      padding: 30px 40px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .profile-box label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .profile-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .profile-box button {
+      width: 100%;
+      background-color: purple;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .profile-box button:hover {
+      background-color: #6a0dad;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Osha Snack</h1>
+  <h2>Login Akun Reward Koin</h2>
+
+  <div class="profile-box">
+    <label for="emailLogin">Email</label>
+    <input type="email" id="emailLogin" placeholder="Masukkan email">
+
+    <label for="passwordLogin">Password</label>
+    <input type="password" id="passwordLogin" placeholder="Masukkan password">
+
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function login() {
+      const emailInput = document.getElementById("emailLogin").value.trim();
+      const passwordInput = document.getElementById("passwordLogin").value;
+
+      if (!emailInput || !passwordInput) {
+        alert("Email dan password harus diisi.");
+        return;
+      }
+
+      const userStr = localStorage.getItem("user");
+      if (!userStr) {
+        alert("Pengguna tidak ditemukan. Silakan daftar terlebih dahulu.");
+        return;
+      }
+
+      const user = JSON.parse(userStr);
+
+      if (emailInput === user.email && passwordInput === user.password) {
+        // Login sukses
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("namaPengguna", user.nama);
+        localStorage.setItem("saldoKoin", user.saldoKoin);
+        window.location.href = "profile.html";
+      } else {
+        alert("Email atau password salah.");
+      }
+    }
+  </script>
+
+</body>
+</html>
