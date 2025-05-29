@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar - Reward Koin</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f7ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: purple;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .profile-box {
+      background: white;
+      border-radius: 10px;
+      padding: 30px 40px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .profile-box label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .profile-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .profile-box button {
+      width: 100%;
+      background-color: purple;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .profile-box button:hover {
+      background-color: #6a0dad;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Osha Snack</h1>
+  <h2>Pendaftaran Akun Reward Koin</h2>
+
+  <div class="profile-box">
+    <label for="namaInput">Nama Lengkap</label>
+    <input type="text" id="namaInput" placeholder="Masukkan nama Anda">
+
+    <label for="emailInput">Email</label>
+    <input type="email" id="emailInput" placeholder="Masukkan email Anda">
+
+    <label for="passwordInput">Password</label>
+    <input type="password" id="passwordInput" placeholder="Masukkan password">
+
+    <button onclick="daftar()">Daftar</button>
+  </div>
+
+  <script>
+    function daftar() {
+      const nama = document.getElementById("namaInput").value.trim();
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value;
+
+      if (!nama || !email || !password) {
+        alert("Semua field harus diisi.");
+        return;
+      }
+
+      const userData = {
+        nama: nama,
+        email: email,
+        password: password,
+        saldoKoin: 0
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      alert("Pendaftaran berhasil!");
+
+      // Arahkan ke halaman selamat datang
+      window.location.href = "welcome.html";
+    }
+  </script>
+
+</body>
+</html>
